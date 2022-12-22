@@ -36,3 +36,18 @@ export async function getUser(req: Request, res: Response, next: NextFunction) {
   Object.assign(req.body, { user: fetchedUser })
   next()
 }
+
+export async function isAdmin(req: Request, res: Response, next: NextFunction) {
+  const {
+    user: { role },
+  } = req.body
+  if (role !== 'admin') {
+    const userNotAdmin = new errorTypes.UnauthorizedRequest({
+      msg: 'not an admin',
+    })
+
+    return next(userNotAdmin)
+  }
+
+  next()
+}

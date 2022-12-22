@@ -4,5 +4,6 @@ import auth from './auth'
 
 export * from './user'
 export * from './refresh'
+export * from './election'
 
 export { errorHandler, validate, auth }
